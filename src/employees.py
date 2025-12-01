@@ -35,7 +35,7 @@ def get_employee_id(employee_id):
     return update
 #====================================================================
 # X. COUNT ALL EMPLOYEES BY ID
-@router.get('/count_employees/')
+@router.get('/count_employee/')
 def count_employee():
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
