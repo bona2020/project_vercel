@@ -1,21 +1,22 @@
 from fastapi import FastAPI
 from utils import get_conn
+from src.employees import router as employee_router
+from src.products import router as product_router
+from src.sales import router as sales_router
 
-app = FastAPI()
+app = FastAPI(tags=['Root'])
+
 
 @app.get('/')
 def read_root():
     return {'Message':'Hello from Root'}
 
-@app.get('/employees')
-def get_employees():
-    conn = get_conn()
-    cur = conn.cursor()
-    script = 'SELECT * FROM employees'
-    # value = 
-    cur.execute(script)
-    update = cur.fetchall()
-    cur.close()
-    conn.close()
-    return update
+
+app.include_router(employee_router)
+app.include_router(product_router)
+app.include_router(sales_router)
+
+
+
+
 
