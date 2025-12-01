@@ -33,6 +33,19 @@ def get_employee_id(employee_id):
     if not update :
         return {'Employee ID':f'[{employee_id}] not found'}
     return update
+#====================================================================
+# X. COUNT ALL EMPLOYEES BY ID
+@router.get('/count_employees/')
+def count_employee():
+    conn = get_conn()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    script = 'SELECT COUNT(employee_id) FROM employees'
+    # value = ()
+    cur.execute(script)
+    update = cur.fetchall()
+    cur.close()
+    conn.close()
+    return update
 
 #====================================================================
 # 3. CREATE EMPLOYEE 

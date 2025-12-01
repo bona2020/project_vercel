@@ -35,6 +35,19 @@ def get_product_id(product_id):
     if not update :
         return {'Product ID':f'[{product_id}] not found'}
     return update
+#====================================================================
+# X. COUNT ALL PRODUCT BY ID
+@router.get('/count_product/')
+def count_product():
+    conn = get_conn()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    script = 'SELECT COUNT(product_id) FROM products'
+    # value = ()
+    cur.execute(script)
+    update = cur.fetchall()
+    cur.close()
+    conn.close()
+    return update
 
 #====================================================================
 # 3. CREATE A PRODUCT 
