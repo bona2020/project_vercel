@@ -54,11 +54,11 @@ def count_sale():
 def detali_sale():
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
-    script = '''select s.sale_id , s.sale_date , p.product_name ,e.name , s.quantity ,s.total_amount 
+    script = '''select s.sale_id , s.sale_date , p.product_name ,e.name , s.quantity ,p.price ,s.total_amount 
                 from public.sales s 
                 join public.employees e  on s.employee_id  = e.employee_id
                 join products p   on s.product_id  = p.product_id  
-                 ORDER BY sale_id ASC ;'''
+                 ORDER BY sale_id ASC;'''
     # value = ()
     cur.execute(script)
     update = cur.fetchall()
