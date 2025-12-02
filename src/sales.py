@@ -48,6 +48,23 @@ def count_sale():
     cur.close()
     conn.close()
     return update
+#====================================================================
+# X. GET  ALL SALES BY DETALIS
+@router.get('/detail_sale/')
+def detali_sale():
+    conn = get_conn()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    script = '''select s.sale_id , s.sale_date , p.product_name ,e.name , s.quantity ,s.total_amount 
+                from public.sales s 
+                join public.employees e  on s.employee_id  = e.employee_id
+                join products p   on s.product_id  = p.product_id  
+                 ORDER BY sale_id ASC ;'''
+    # value = ()
+    cur.execute(script)
+    update = cur.fetchall()
+    cur.close()
+    conn.close()
+    return update
 
 #====================================================================
 # 3. CREATE A SALE 
@@ -96,3 +113,4 @@ def delete_sale(sale_id):
     if not update :
         return {'Sale ID':f'[{sale_id}] not found'}
     return update
+
