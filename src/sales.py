@@ -50,7 +50,7 @@ def count_sale():
     return update
 #====================================================================
 # X. GET  ALL SALES BY DETALIS
-@router.get('/detail_sale/')
+@router.get('/detail_sale')
 def detali_sale():
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
