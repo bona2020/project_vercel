@@ -12,7 +12,7 @@ router = APIRouter(tags=['Products'])
 def get_products():
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
-    script = 'SELECT * FROM products'
+    script = 'SELECT * FROM products ORDER BY product_id ASC'
     # value = 
     cur.execute(script)
     update = cur.fetchall()
@@ -41,7 +41,7 @@ def get_product_id(product_id):
 def count_product():
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
-    script = 'SELECT COUNT(product_id) FROM products'
+    script = 'SELECT COUNT(product_id) FROM products ;'
     # value = ()
     cur.execute(script)
     update = cur.fetchall()

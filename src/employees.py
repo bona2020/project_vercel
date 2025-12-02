@@ -10,7 +10,7 @@ router = APIRouter(tags=['Employees'])
 def get_employees():
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
-    script = 'SELECT * FROM employees'
+    script = 'SELECT * FROM employees ORDER BY employee_id ASC'
     # value = 
     cur.execute(script)
     update = cur.fetchall()
@@ -39,7 +39,7 @@ def get_employee_id(employee_id):
 def count_employee():
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
-    script = 'SELECT COUNT(employee_id) FROM employees'
+    script = 'SELECT COUNT(employee_id) FROM employees ;'
     # value = ()
     cur.execute(script)
     update = cur.fetchall()

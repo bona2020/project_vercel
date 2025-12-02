@@ -12,7 +12,7 @@ router = APIRouter(tags=['Sales'])
 def get_sales():
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
-    script = 'SELECT * FROM sales'
+    script = 'SELECT * FROM sales ORDER BY sale_id ASC'
     # value = 
     cur.execute(script)
     update = cur.fetchall()
@@ -41,7 +41,7 @@ def get_sale_id(sale_id):
 def count_sale():
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
-    script = 'SELECT COUNT(employee_id) FROM sales'
+    script = 'SELECT COUNT(employee_id) FROM sales ;'
     # value = ()
     cur.execute(script)
     update = cur.fetchall()
