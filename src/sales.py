@@ -49,9 +49,9 @@ def count_sale():
     conn.close()
     return update
 #====================================================================
-# X. GET  ALL SALES BY DETALIS
+# Y. GET  ALL SALES BY DETAILS
 @router.get('/detail_sale')
-def detali_sale():
+def detail_sale():
     conn = get_conn()
     cur = conn.cursor(cursor_factory=RealDictCursor)
     script = '''select s.sale_id , s.sale_date , p.product_name ,e.name , s.quantity ,p.price ,s.total_amount 
